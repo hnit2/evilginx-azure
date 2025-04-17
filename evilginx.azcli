@@ -24,6 +24,8 @@ $adminname="dis"
 
 $adminpassword=read-host  "please enter admin password"
 
+$publicIP=
+
 
 az login
 az account set --subscription "6c5fb53c-6dfb-482c-a29d-900adb6c619f"
@@ -50,3 +52,5 @@ az network nic create --name $nicname --resource-group $resourceGroup --vnet-nam
 #create VM
 az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword"
 
+#Open Port 22 in the NSG
+az network nsg rule create --name allowssh --nsg-name $nsgname --resource-group $resourceGroup  --destination-port-ranges 22 --priority 100 --access allow --protocol tcp --source-address-prefixes $publicIP
