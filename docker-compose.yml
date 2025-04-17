@@ -1,0 +1,14 @@
+services:
+  evilgnx:
+    image: evilginx:latest
+    container_name: evilginx
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+    ports:
+      - "443:443"
+    volumes:
+      - ./files/config:/app/config/
+      - ./files/phishlets:/app/phishlets
