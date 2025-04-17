@@ -1,23 +1,30 @@
 #Azure CLI with Powershell as shell
+
 $subscriptionId="6c5fb53c-6dfb-482c-a29d-900adb6c619f"
+
 $resourceGroup="IAMCP_Evilginx"
 
-
-
 $vnetName="IT2-Evilginx"
+
 $subnetName="Dante"
 
 $nsgname="Matelda"
 
 $ipname="Beatrice"
+
 $nicname="Minos"
 
 $diskname="Vergil"
 
 $vmName="SaintBernard"
 
-$size="Standard_B2ls_v2"
+$size="Standard_B2s"
 
+$adminname="dis"
+
+$adminpassword=read-host  "please enter admin password"
+
+$publicIP=(Invoke-Webrequest ipecho.net/plain).Content
 
 az login
 az account set --subscription "6c5fb53c-6dfb-482c-a29d-900adb6c619f"
@@ -37,7 +44,12 @@ az network public-ip create --name $ipname --resource-group $resourceGroup --sku
 az network nic create --name $nicname --resource-group $resourceGroup --vnet-name $vnetName --subnet $subnetName --public-ip-address $ipname --private-ip-address 10.6.6.6
 
 #create Disk
-az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
+#az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
+#delete Disk
+#az disk delete --name $diskname --resource-group $resourceGroup
 
 #create VM
-az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --vnet-name $vnetName --subnet $subnetName --generate-ssh-keys --attach-os-disk $diskname --computername $vmname --nics $nicname --size $size
+az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword"
+
+#Open Port 22 in the NSG
+az network nsg rule create --name allowssh --nsg-name $nsgname --resource-group $resourceGroup  --destination-port-ranges 22 --priority 100 --access allow --protocol tcp --source-address-prefixes $publicIP
