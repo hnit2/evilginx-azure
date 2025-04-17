@@ -31,7 +31,7 @@ $vmName="Dante"
 $size="Standard_B2s"
 
 #Admin Name
-$adminname="Lucifer"
+$adminname="lucifer"
 
 #Set Admin Password
 $adminpassword=read-host  "please enter admin password"
