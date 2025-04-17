@@ -7,13 +7,13 @@ $subscriptionId="6c5fb53c-6dfb-482c-a29d-900adb6c619f"
 $resourceGroup="IAMCP_Evilginx"
 
 #Vnet Name
-$vnetName="IT2-Evilginx"
+$vnetName="Inferno"
 
 #Subnet Name
-$subnetName="Dante"
+$subnetName="Dis"
 
 #NSG Name
-$nsgname="Matelda"
+$nsgname="Malacoda"
 
 #IP Name
 $ipname="Beatrice"
@@ -25,13 +25,13 @@ $nicname="Minos"
 $diskname="Vergil"
 
 #VM Name
-$vmName="SaintBernard"
+$vmName="Dante"
 
 #SKU
 $size="Standard_B2s"
 
 #Admin Name
-$adminname="dis"
+$adminname="Lucifer"
 
 #Set Admin Password
 $adminpassword=read-host  "please enter admin password"
