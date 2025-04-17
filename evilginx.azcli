@@ -1,33 +1,50 @@
 #Azure CLI with Powershell as shell
 
+#Subscription ID
 $subscriptionId="6c5fb53c-6dfb-482c-a29d-900adb6c619f"
 
+#ResourceGroup
 $resourceGroup="IAMCP_Evilginx"
 
+#Vnet Name
 $vnetName="IT2-Evilginx"
 
+#Subnet Name
 $subnetName="Dante"
 
+#NSG Name
 $nsgname="Matelda"
 
+#IP Name
 $ipname="Beatrice"
 
+#NIC Name
 $nicname="Minos"
 
+#Disk Name
 $diskname="Vergil"
 
+#VM Name
 $vmName="SaintBernard"
 
+#SKU
 $size="Standard_B2s"
 
+#Admin Name
 $adminname="dis"
 
+#Set Admin Password
 $adminpassword=read-host  "please enter admin password"
 
+#Get IP Address
 $publicIP=(Invoke-Webrequest ipecho.net/plain).Content
 
+#Login to Azure
 az login
-az account set --subscription "6c5fb53c-6dfb-482c-a29d-900adb6c619f"
+
+#Set Subscription
+az account set --subscription $subscriptionid
+
 #create VNET
 az network vnet create --name $vnetName --resource-group $resourceGroup --address-prefix 10.6.0.0/16 --subnet-name $subnetName --subnet-prefixes 10.6.6.0/24
 
