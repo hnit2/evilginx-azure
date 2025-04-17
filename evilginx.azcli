@@ -55,7 +55,7 @@ az network nsg create --name $nsgname --resource-group $resourceGroup
 az network vnet subnet update --name $subnetname --vnet-name $vnetName --resource-group $resourcegroup --network-security-group $nsgname
 
 #create Public IP
-az network public-ip create --name $ipname --resource-group $resourceGroup --sku "Standard" --allocation-method Static --version IPv4
+az network public-ip create --name $ipname --resource-group $resourceGroup --sku "Standard" --allocation-method Static --version IPv4 --dns-name $ipname
 
 #create Network Interface
 az network nic create --name $nicname --resource-group $resourceGroup --vnet-name $vnetName --subnet $subnetName --public-ip-address $ipname --private-ip-address 10.6.6.6
