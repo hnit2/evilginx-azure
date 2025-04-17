@@ -1,0 +1,42 @@
+#Azure CLI with Powershell as shell
+
+$subscriptionId="6c5fb53c-6dfb-482c-a29d-900adb6c619f"
+$resourceGroup="IAMCP_Evilginx"
+
+
+
+$vnetName="IT2-Evilginx"
+$subnetName="Dante"
+
+$nsgname="Matelda"
+
+$ipname="Beatrice"
+$nicname="Minos"
+
+$diskname="Vergil"
+
+$vmName="SaintBernard"
+
+
+az login
+az account set --subscription "6c5fb53c-6dfb-482c-a29d-900adb6c619f"
+#create VNET
+az network vnet create --name $vnetName --resource-group $resourceGroup --address-prefix 10.6.0.0/16 --subnet-name $subnetName --subnet-prefixes 10.6.6.0/24
+
+#create NSG
+az network nsg create --name $nsgname --resource-group $resourceGroup 
+
+#attach NSG
+az network vnet subnet update --name $subnetname --vnet-name $vnetName --resource-group $resourcegroup --network-security-group $nsgname
+
+#create Public IP
+az network public-ip create --name $ipname --resource-group $resourceGroup --sku "Standard" --allocation-method Static --version IPv4
+
+#create Network Interface
+az network nic create --name $nicname --resource-group $resourceGroup --vnet-name $vnetName --subnet $subnetName --public-ip-address $ipname --private-ip-address 10.6.6.6
+
+#create Disk
+az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
+
+#create VM
+az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --vnet-name $vnetName --subnet $subnetName --generate-ssh-keys --attach-os-disk $diskname --computername $vmname --nics $nicname  
