@@ -60,11 +60,6 @@ az network public-ip create --name $ipname --resource-group $resourceGroup --sku
 #create Network Interface
 az network nic create --name $nicname --resource-group $resourceGroup --vnet-name $vnetName --subnet $subnetName --public-ip-address $ipname --private-ip-address 10.6.6.6
 
-#create Disk
-#az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
-#delete Disk
-#az disk delete --name $diskname --resource-group $resourceGroup
-
 #create VM
 az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword" ----custom-data cloud-init.txt
 
