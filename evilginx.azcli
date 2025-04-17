@@ -66,7 +66,7 @@ az network nic create --name $nicname --resource-group $resourceGroup --vnet-nam
 #az disk delete --name $diskname --resource-group $resourceGroup
 
 #create VM
-az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword"
+az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword" ----custom-data cloud-init.txt
 
 #Open Port 22 in the NSG
 az network nsg rule create --name allowssh --nsg-name $nsgname --resource-group $resourceGroup  --destination-port-ranges 22 --priority 100 --access allow --protocol tcp --source-address-prefixes $publicIP
