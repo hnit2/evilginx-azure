@@ -70,3 +70,6 @@ az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 -
 
 #Open Port 22 in the NSG
 az network nsg rule create --name allowssh --nsg-name $nsgname --resource-group $resourceGroup  --destination-port-ranges 22 --priority 100 --access allow --protocol tcp --source-address-prefixes $publicIP
+
+#Open Port 443 in the NSG
+az network nsg rule create --name allowhttps --nsg-name $nsgname --resource-group $resourceGroup  --destination-port-ranges 443 --priority 100 --access allow --protocol tcp 
