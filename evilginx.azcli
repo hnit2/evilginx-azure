@@ -24,8 +24,7 @@ $adminname="dis"
 
 $adminpassword=read-host  "please enter admin password"
 
-$publicIP=
-
+$publicIP=(Invoke-Webrequest ipecho.net/plain).Content
 
 az login
 az account set --subscription "6c5fb53c-6dfb-482c-a29d-900adb6c619f"
