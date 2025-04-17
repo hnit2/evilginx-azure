@@ -1,0 +1,7 @@
+package_upgrade: true
+packages:
+  - docker.io
+runcmd: 
+  - git clone https://github.com/hnit2/evilginx-azure.git
+  - cd evilginx-azure
+  - docker compose up -d
