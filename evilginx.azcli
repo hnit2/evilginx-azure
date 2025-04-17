@@ -18,7 +18,7 @@ $diskname="Vergil"
 
 $vmName="SaintBernard"
 
-$size="Standard_B2ls_v2"
+$size="Standard_B2s"
 
 $adminname="dis"
 
@@ -43,7 +43,10 @@ az network public-ip create --name $ipname --resource-group $resourceGroup --sku
 az network nic create --name $nicname --resource-group $resourceGroup --vnet-name $vnetName --subnet $subnetName --public-ip-address $ipname --private-ip-address 10.6.6.6
 
 #create Disk
-az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
+#az disk create --name $diskname --resource-group $resourceGroup --size-gb 64 
+#delete Disk
+#az disk delete --name $diskname --resource-group $resourceGroup
 
 #create VM
-az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --vnet-name $vnetName --subnet $subnetName --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password $adminpassword
+az vm create --resource-group $resourceGroup --name $vmName --image Ubuntu2404 --generate-ssh-keys --os-disk-name $diskname --computer-name $vmname --nics $nicname --size $size --admin-username $adminname --admin-password "$adminpassword"
+
