@@ -1,5 +1,5 @@
 #Azure CLI with Powershell as shell
-
+# author: @hn@it2, lh@it2.de, vk@it2.de
 #Subscription ID
 $subscriptionId="6c5fb53c-6dfb-482c-a29d-900adb6c619f"
 
